@@ -1,6 +1,7 @@
 package com.voiceray.Voiceray.repository;
 
 import com.voiceray.Voiceray.model.AudioData;
+import com.voiceray.Voiceray.model.AudioMetadata;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -29,12 +30,8 @@ public class AudioFileRepositoryImpl implements AudioFileRepository {
     }
 
     @Override
-    public Optional<AudioData> findAudioById(String id) {
-        String sql = "SELECT * FROM audio_data WHERE id = ?";
-        try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(sql, rowMapper, id));
-        } catch (EmptyResultDataAccessException e) {
-            return Optional.empty();
-        }
+    public AudioMetadata findAudioById(String id) {
+        return null;
     }
+
 }

@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface AudioMetadataRepository {
     List<AudioMetadata> getAllMetadata();
-    Optional<AudioMetadata> findById(String id);
+    AudioMetadata findById(String id);
     void saveMetadata(AudioMetadata metadata) throws SQLException;
 }

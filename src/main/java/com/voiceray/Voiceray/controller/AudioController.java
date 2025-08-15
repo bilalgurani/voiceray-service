@@ -42,7 +42,9 @@ public class AudioController {
                 request.getDescription(),
                 request.getSpeakerName(),
                 request.getTags(),
-                LocalDateTime.now()
+                LocalDateTime.now(),
+                null,
+                null
                 );
         metadataRepository.saveMetadata(audioMetadata);
 
@@ -59,11 +61,7 @@ public class AudioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<byte[]> getAudio(@PathVariable String id) {
-        return audioFileRepository.findAudioById(id)
-                .map(audioData -> ResponseEntity.ok()
-                        .header(HttpHeaders.CONTENT_TYPE, "audio/mpeg")
-                        .body(audioData.getData()))
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<AudioMetadata> getAudio(@PathVariable String id) {
+        return ResponseEntity.ok(metadataRepository.findById(id));
     }
 }

@@ -29,7 +29,9 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
                 rs.getString("description"),
                 rs.getString("speaker_name"),
                 tags,
-                rs.getTimestamp("upload_date").toLocalDateTime()
+                rs.getTimestamp("upload_date").toLocalDateTime(),
+                rs.getString("thumbnail_url"),
+                rs.getString("audio_url")
         );
     };
 
@@ -44,20 +46,14 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
     }
 
     @Override
-    public Optional<AudioMetadata> findById(String id) {
+    public AudioMetadata findById(String id) {
         String sql = "SELECT * FROM audio_metadata WHERE id = ?";
-        try {
-            return Optional.ofNullable(
-                    jdbcTemplate.queryForObject(sql, rowMapper, id)
-            );
-        } catch (EmptyResultDataAccessException e) {
-            return Optional.empty();
-        }
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     @Override
     public void saveMetadata(AudioMetadata metadata) throws SQLException {
-        String sql = "INSERT INTO audio_metadata(id, topic, description, speakerName, tags, uploadDateTime, imageId) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO audio_metadata(id, topic, description, speakerName, tags, uploadDateTime, thumbnail_url, audio_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         assert jdbcTemplate.getDataSource() != null;
         jdbcTemplate.update(
                 sql,
@@ -66,7 +62,9 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
                 metadata.getDescription(),
                 metadata.getSpeakerName(),
                 jdbcTemplate.getDataSource().getConnection().createArrayOf("varchar", metadata.getTags()),
-                metadata.getUploadDateTime()
+                metadata.getUploadDateTime(),
+                metadata.getThumbnailUrl(),
+                metadata.getAudioUrl()
                 );
     }
 
