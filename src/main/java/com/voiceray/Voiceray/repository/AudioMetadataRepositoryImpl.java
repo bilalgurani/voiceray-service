@@ -53,7 +53,7 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
 
     @Override
     public void saveMetadata(AudioMetadata metadata) throws SQLException {
-        String sql = "INSERT INTO audio_metadata(id, topic, description, speakerName, tags, uploadDateTime, thumbnail_url, audio_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO audio_metadata(id, topic, description, speaker_name, tags, upload_date, thumbnail_url, audio_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         assert jdbcTemplate.getDataSource() != null;
         jdbcTemplate.update(
                 sql,

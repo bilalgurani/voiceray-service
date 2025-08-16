@@ -5,9 +5,6 @@ public class AudioUploadRequest {
     private String description;
     private String speakerName;
     private String[] tags;
-    private byte[] imageData;
-    private String imageMimeType;
-    private byte[] audioData;
 
     public String getTopic() {
         return topic;
@@ -39,29 +36,5 @@ public class AudioUploadRequest {
 
     public void setTags(String[] tags) {
         this.tags = tags;
-    }
-
-    public byte[] getImageData() {
-        return imageData;
-    }
-
-    public void setImageData(byte[] imageData) {
-        this.imageData = imageData;
-    }
-
-    public String getImageMimeType() {
-        return imageMimeType;
-    }
-
-    public void setImageMimeType(String imageMimeType) {
-        this.imageMimeType = imageMimeType;
-    }
-
-    public byte[] getAudioData() {
-        return audioData;
-    }
-
-    public void setAudioData(byte[] audioData) {
-        this.audioData = audioData;
     }
 }
