@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface AudioMetadataRepository {
-    List<AudioMetadata> getAllMetadata();
+    List<AudioMetadata> getAllData();
     AudioMetadata findById(String id);
     void saveMetadata(AudioMetadata metadata) throws SQLException;
 }

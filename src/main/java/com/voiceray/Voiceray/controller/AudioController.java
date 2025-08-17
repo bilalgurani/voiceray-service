@@ -47,8 +47,8 @@ public class AudioController {
     }
 
     @GetMapping("/allMetadata")
-    public List<AudioMetadataWithImage> getAllMetadataWithImageMetadata() {
-        return audioService.getAllMetadataWithImage();
+    public List<AudioMetadata> getAllMetadataWithImageMetadata() {
+        return audioService.getAllData();
     }
 
     @GetMapping("/{id}")

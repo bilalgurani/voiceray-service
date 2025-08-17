@@ -40,7 +40,7 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
     }
 
     @Override
-    public List<AudioMetadata> getAllMetadata() {
+    public List<AudioMetadata> getAllData() {
         String sql = "SELECT * FROM audio_metadata";
         return jdbcTemplate.query(sql, rowMapper);
     }

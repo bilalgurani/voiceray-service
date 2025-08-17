@@ -74,16 +74,7 @@ public class AudioService {
         return id;
     }
 
-    public List<AudioMetadataWithImage> getAllMetadataWithImage() {
-        return audioMetadataRepository.getAllMetadata().stream()
-                .map(metadata -> {
-                    ImageData imageData = imageRepository.findImageById(metadata.getId()).orElse(null);
-                    return new AudioMetadataWithImage(
-                            metadata,
-                            imageData != null ? imageData.getImageData() : null,
-                            imageData != null ? imageData.getMimeType() : null
-                            );
-        })
-                .collect(Collectors.toList());
+    public List<AudioMetadata> getAllData() {
+        return audioMetadataRepository.getAllData();
     }
 }
