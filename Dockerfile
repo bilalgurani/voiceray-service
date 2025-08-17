@@ -18,7 +18,7 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 # Copy built JAR
-COPY --from=builder /app/build/libs/app.jar app.jar
+COPY --from=builder /app/build/libs/Voiceray-0.0.1-SNAPSHOT.jar app.jar
 
 # Add non-root user
 RUN addgroup -S spring && adduser -S spring -G spring
