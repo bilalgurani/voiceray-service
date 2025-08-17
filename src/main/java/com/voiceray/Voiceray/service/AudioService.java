@@ -67,7 +67,8 @@ public class AudioService {
                 request.getTags(),
                 LocalDateTime.now(),
                 thumbnailUrl,
-                audioUrl
+                audioUrl,
+                request.getDuration()
         );
 
         audioMetadataRepository.saveMetadata(metadata);

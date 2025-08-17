@@ -5,6 +5,7 @@ public class AudioUploadRequest {
     private String description;
     private String speakerName;
     private String[] tags;
+    private String duration;
 
     public String getTopic() {
         return topic;
@@ -36,5 +37,13 @@ public class AudioUploadRequest {
 
     public void setTags(String[] tags) {
         this.tags = tags;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

@@ -31,7 +31,8 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
                 tags,
                 rs.getTimestamp("upload_date").toLocalDateTime(),
                 rs.getString("thumbnail_url"),
-                rs.getString("audio_url")
+                rs.getString("audio_url"),
+                rs.getString("duration")
         );
     };
 
@@ -53,7 +54,7 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
 
     @Override
     public void saveMetadata(AudioMetadata metadata) throws SQLException {
-        String sql = "INSERT INTO audio_metadata(id, topic, description, speaker_name, tags, upload_date, thumbnail_url, audio_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO audio_metadata(id, topic, description, speaker_name, tags, upload_date, thumbnail_url, audio_url, duration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         assert jdbcTemplate.getDataSource() != null;
         jdbcTemplate.update(
                 sql,
@@ -64,7 +65,8 @@ public class AudioMetadataRepositoryImpl implements AudioMetadataRepository {
                 jdbcTemplate.getDataSource().getConnection().createArrayOf("varchar", metadata.getTags()),
                 metadata.getUploadDateTime(),
                 metadata.getThumbnailUrl(),
-                metadata.getAudioUrl()
+                metadata.getAudioUrl(),
+                metadata.getDuration()
                 );
     }
 

@@ -11,8 +11,9 @@ public class AudioMetadata {
     private LocalDateTime uploadDateTime;
     private String thumbnailUrl;
     private String audioUrl;
+    private String duration;
 
-    public AudioMetadata(String id, String topic, String description, String speakerName, String[] tags, LocalDateTime uploadDateTime, String thumbnailUrl, String audioUrl) {
+    public AudioMetadata(String id, String topic, String description, String speakerName, String[] tags, LocalDateTime uploadDateTime, String thumbnailUrl, String audioUrl, String duration) {
         this.id = id;
         this.topic = topic;
         this.description = description;
@@ -21,6 +22,7 @@ public class AudioMetadata {
         this.uploadDateTime = uploadDateTime;
         this.thumbnailUrl = thumbnailUrl;
         this.audioUrl = audioUrl;
+        this.duration = duration;
     }
 
     public String getId() {
@@ -81,5 +83,13 @@ public class AudioMetadata {
 
     public void setAudioUrl(String audioUrl) {
         this.audioUrl = audioUrl;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }
