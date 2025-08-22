@@ -4,6 +4,8 @@ import com.voiceray.Voiceray.exception.InvalidFileException;
 import com.voiceray.Voiceray.model.*;
 import com.voiceray.Voiceray.repository.AudioMetadataRepository;
 import com.voiceray.Voiceray.service.AudioService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ public class AudioController {
         this.audioService = audioService;
     }
 
+    @CacheEvict(value = "allData", allEntries = true)
     @PostMapping(value = "upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<AudioUploadResponse> saveMetaData(
             @RequestPart("metadata") AudioUploadRequest request,
@@ -46,6 +49,7 @@ public class AudioController {
         }
     }
 
+    @Cacheable("getAll")
     @GetMapping("/allMetadata")
     public List<AudioMetadata> getAllMetadataWithImageMetadata() {
         return audioService.getAllData();
